@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Customer {
+  id_customer Int        @id @default(autoincrement())
+  name        String
+  email       String
+  address_id  Int
+  address     Address     @relation(fields: [address_id], references: [id_address])
+  Purchase    Purchase[]
+
+  @@map("customer")
+}
+
+model Address {
+  id_address Int        @id @default(autoincrement())
+  street    String
+  number    Int
+  district  String
+  zip_code  String
+  city      String
+  state     String
+  Customer  Customer[]
+
+  @@map("addres")
+}
+
+model Product {
+  id_product     Int              @id @default(autoincrement())
+  name           String
+  price          Decimal
+  PurchaseDetail PurchaseDetail[]
+
+  @@map("product")
+}
+
+model Purchase {
+  id_purchase    Int              @id @default(autoincrement())
+  customer_id    Int
+  customer       Customer         @relation(fields: [customer_id], references: [id_customer])
+  created_at     DateTime         @default(now())
+  total          Decimal
+  subtotal       Decimal
+  PurchaseDetail PurchaseDetail[]
+
+  @@map("purchase")
+}
+
+model PurchaseDetail {
+  id_purchase_detail Int      @id @default(autoincrement())
+  product_id         Int
+  product            Product  @relation(fields: [product_id], references: [id_product])
+  purchase_id        Int
+  purchase           Purchase @relation(fields: [purchase_id], references: [id_purchase])
+
+  @@map("purchase_detail")
+}

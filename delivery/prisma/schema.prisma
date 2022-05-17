@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model customer_detail {
+  id_customer_detail Int        @id @default(autoincrement())
+  id_customer        Int
+  address_id         Int
+  customer_name      String     @db.VarChar(255)
+  delivery           delivery[]
+}
+
+model delivery {
+  id_delivery                        Int             @id @default(autoincrement())
+  descricao                          String?         @db.VarChar(255)
+  data_transacao                     DateTime        @db.DateTime(0)
+  situacao                           String          @db.VarChar(255)
+  data_prevista                      DateTime        @db.DateTime(0)
+  data_entrega                       DateTime?       @db.DateTime(0)
+  latitude                           String?         @db.VarChar(45)
+  longitude                          String?         @db.VarChar(45)
+  customer_detail_id_customer_detail Int
+  customer_detail                    customer_detail @relation(fields: [customer_detail_id_customer_detail], references: [id_customer_detail], onDelete: NoAction, onUpdate: NoAction, map: "fk_delivery_customer_detail")
+
+  @@index([customer_detail_id_customer_detail], map: "fk_delivery_customer_detail_idx")
+}
