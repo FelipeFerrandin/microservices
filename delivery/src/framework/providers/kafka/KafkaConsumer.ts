@@ -1,7 +1,9 @@
 import {lKafka} from "@/framework/providers/kafka/KafkaProvider";
 
-export const lConsumer = lKafka.consumer({groupId: 'classroom-group', allowAutoTopicCreation: true})
+const gConsumer = lKafka.consumer({groupId: 'delivery-group', allowAutoTopicCreation: true})
 
-lConsumer.connect().then(() => {
+gConsumer.connect().then(() => {
     console.log('Kafka consumer connected');
 })
+
+export {gConsumer}
