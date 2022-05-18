@@ -16,7 +16,7 @@ app.use(morgan('dev'))
 app.disable('x-powered-by')
 
 
-app.use((err: Error, req: Request, res: Response, next: Function) => {
+app.use((err: Error, req: Request, res: Response, next: () => void) => {
 
 })
 
