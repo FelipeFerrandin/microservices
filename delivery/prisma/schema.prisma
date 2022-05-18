@@ -7,10 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model customer_detail {
-  id_customer_detail Int        @id @default(autoincrement())
+model order {
+  id_order Int        @id @default(autoincrement())
   id_customer        Int
   address_id         Int
+  purchase_id         Int
   customer_name      String     @db.VarChar(255)
   delivery           delivery[]
 }
@@ -24,8 +25,8 @@ model delivery {
   data_entrega                       DateTime?       @db.DateTime(0)
   latitude                           String?         @db.VarChar(45)
   longitude                          String?         @db.VarChar(45)
-  customer_detail_id_customer_detail Int
-  customer_detail                    customer_detail @relation(fields: [customer_detail_id_customer_detail], references: [id_customer_detail], onDelete: NoAction, onUpdate: NoAction, map: "fk_delivery_customer_detail")
+  order_id_order                     Int
+  customer_detail                    order @relation(fields: [order_id_order], references: [id_order], onDelete: NoAction, onUpdate: NoAction, map: "fk_delivery_order")
 
-  @@index([customer_detail_id_customer_detail], map: "fk_delivery_customer_detail_idx")
+  @@index([order_id_order], map: "fk_delivery_order_idx")
 }
