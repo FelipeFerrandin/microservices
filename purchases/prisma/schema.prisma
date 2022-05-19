@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["interactiveTransactions"]
 }
 
@@ -16,7 +16,7 @@ model Customer {
   name        String
   email       String
   address_id  Int
-  address     Address     @relation(fields: [address_id], references: [id_address])
+  address     Address    @relation(fields: [address_id], references: [id_address])
   Purchase    Purchase[]
 
   @@map("customer")
@@ -24,13 +24,13 @@ model Customer {
 
 model Address {
   id_address Int        @id @default(autoincrement())
-  street    String
-  number    Int
-  district  String
-  zip_code  String
-  city      String
-  state     String
-  Customer  Customer[]
+  street     String
+  number     Int
+  district   String
+  zip_code   String
+  city       String
+  state      String
+  Customer   Customer[]
 
   @@map("addres")
 }
@@ -51,6 +51,7 @@ model Purchase {
   created_at     DateTime         @default(now())
   total          Decimal
   subtotal       Decimal
+  situation      String
   PurchaseDetail PurchaseDetail[]
 
   @@map("purchase")
