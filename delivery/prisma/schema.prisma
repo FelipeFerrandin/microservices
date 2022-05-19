@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions"]
 }
 
 datasource db {
@@ -8,25 +9,25 @@ datasource db {
 }
 
 model order {
-  id_order Int        @id @default(autoincrement())
-  id_customer        Int
-  address_id         Int
-  purchase_id         Int
-  customer_name      String     @db.VarChar(255)
-  delivery           delivery[]
+  id_order      Int        @id @default(autoincrement())
+  id_customer   Int
+  address_id    Int
+  purchase_id   Int
+  customer_name String     @db.VarChar(255)
+  delivery      delivery[]
 }
 
 model delivery {
-  id_delivery                        Int             @id @default(autoincrement())
-  descricao                          String?         @db.VarChar(255)
-  data_transacao                     DateTime        @db.DateTime(0)
-  situacao                           String          @db.VarChar(255)
-  data_prevista                      DateTime        @db.DateTime(0)
-  data_entrega                       DateTime?       @db.DateTime(0)
-  latitude                           String?         @db.VarChar(45)
-  longitude                          String?         @db.VarChar(45)
-  order_id_order                     Int
-  customer_detail                    order @relation(fields: [order_id_order], references: [id_order], onDelete: NoAction, onUpdate: NoAction, map: "fk_delivery_order")
+  id_delivery     Int       @id @default(autoincrement())
+  descricao       String?   @db.VarChar(255)
+  data_transacao  DateTime  @db.DateTime(0)
+  situacao        String    @db.VarChar(255)
+  data_prevista   DateTime  @db.DateTime(0)
+  data_entrega    DateTime? @db.DateTime(0)
+  latitude        String?   @db.VarChar(45)
+  longitude       String?   @db.VarChar(45)
+  order_id_order  Int
+  customer_detail order     @relation(fields: [order_id_order], references: [id_order], onDelete: NoAction, onUpdate: NoAction, map: "fk_delivery_order")
 
   @@index([order_id_order], map: "fk_delivery_order_idx")
 }
