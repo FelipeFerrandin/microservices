@@ -1,17 +1,18 @@
-import {IPurchaseRepository} from "@/purchase/IPurchaseRepository";
-import {CompletePurchaseDTO, PurchaseDTO} from "@/purchase/PurchaseDTO";
-import {ProductDTO} from "@/product/ProductDTO";
-import {Decimal} from "@prisma/client/runtime";
-import {DataBaseClient} from "@/framework/providers/database/PrismaClient";
+import { IPurchaseRepository } from "@/purchase/IPurchaseRepository"
+import { CompletePurchaseDTO, PurchaseDTO } from "@/purchase/PurchaseDTO"
+import { ProductDTO } from "@/product/ProductDTO"
+import { Decimal } from "@prisma/client/runtime"
+import { DataBaseClient } from "@/framework/providers/database/PrismaClient"
+import { PurchaseConstants } from "@/framework/utilities/constants/PurchaseConstants"
 
 
 class PurchaseRepository implements IPurchaseRepository {
 
-    private static mInstance: PurchaseRepository;
+    private static mInstance: PurchaseRepository
     private mDataBase
 
     public static create() {
-        return this.mInstance || (this.mInstance = new this());
+        return this.mInstance || (this.mInstance = new this())
     }
 
     constructor() {
@@ -22,6 +23,7 @@ class PurchaseRepository implements IPurchaseRepository {
         const lPurchase = await this.mDataBase.purchase.create({
             data: {
                 customer_id: aPurchaseDTO.customer_id,
+                situation: PurchaseConstants.COMPRA_INICIADA,
                 total: new Decimal(aProductsDTO.reduce((acc, val) => acc + Number(val.price.toFixed(2)), 0)),
                 subtotal: new Decimal(aProductsDTO.reduce((acc, val) => acc + Number(val.price.toFixed(2)), 0))
             },
@@ -30,6 +32,7 @@ class PurchaseRepository implements IPurchaseRepository {
         return {
             id_purchase: lPurchase.id_purchase,
             customer_id: lPurchase.customer_id,
+            situation: lPurchase?.situation ?? "",
             total: Number(lPurchase.total.toFixed(2)),
             subtotal: Number(lPurchase.subtotal),
             created_at: lPurchase.created_at
@@ -38,16 +41,12 @@ class PurchaseRepository implements IPurchaseRepository {
     }
 
     async deletePurchaseById(aIdPurchase: number): Promise<void> {
-        await this.mDataBase.purchase.delete({
+        await this.mDataBase.purchase.update({
+            data: {
+                situation: PurchaseConstants.COMPRA_CANCELADA
+            },
             where: {
                 id_purchase: aIdPurchase
-            },
-            include: {
-                PurchaseDetail: {
-                    where: {
-                        purchase_id: aIdPurchase
-                    }
-                }
             }
         })
     }
@@ -55,12 +54,15 @@ class PurchaseRepository implements IPurchaseRepository {
     async getPurchaseById(aIdPurchase: number): Promise<CompletePurchaseDTO> {
         const lPurchase = await this.mDataBase.purchase.findFirst({
             where: {
-                id_purchase: aIdPurchase
+                id_purchase: aIdPurchase, AND: [
+                    { situation: { not: PurchaseConstants.COMPRA_CANCELADA } }
+                ]
             }
         })
 
         return {
             id_purchase: lPurchase?.id_purchase ?? 0,
+            situation: lPurchase?.situation ?? "",
             subtotal: Number(lPurchase?.subtotal.toFixed(2)),
             total: Number(lPurchase?.total.toFixed(2)),
             id_customer: lPurchase?.customer_id ?? 0
@@ -80,6 +82,15 @@ class PurchaseRepository implements IPurchaseRepository {
             }
         })
     }
+
+    async finalizePurchase(aIdPurchase: number) {
+        await this.mDataBase.purchase.update({
+            data: { situation: PurchaseConstants.COMPRA_FINALIZADA },
+            where: { id_purchase: aIdPurchase }
+        })
+    }
+
+    //TODO CANCELAR COMPRA
 }
 
-export {PurchaseRepository}
+export { PurchaseRepository }
