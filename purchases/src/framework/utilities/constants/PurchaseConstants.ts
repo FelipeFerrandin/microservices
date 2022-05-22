@@ -1,0 +1,9 @@
+enum PurchaseConstants {
+    COMPRA_INICIADA = "COMPRA_INICIADA",
+    COMPRA_FINALIZADA = "COMPRA_FINALIZADA",
+    COMPRA_CANCELADA = "COMPRA_CANCELADA"
+}
+
+export { PurchaseConstants }
+
+

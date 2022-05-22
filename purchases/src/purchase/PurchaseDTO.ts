@@ -1,10 +1,11 @@
-import {CustomerDTO} from "@/customer/CustomerDTO";
-import {ProductDTO} from "@/product/ProductDTO";
+import { CustomerDTO } from "@/customer/CustomerDTO"
+import { ProductDTO } from "@/product/ProductDTO"
 
 interface PurchaseDTO {
     id_purchase: number
     customer_id: number
-    created_at: Date
+    created_at: Date,
+    situation: string
     total: number
     subtotal: number
 }
@@ -16,7 +17,8 @@ interface PurchaseCreateDTO {
 
 interface CompletePurchaseDTO {
     id_purchase: number,
-    id_customer: number
+    id_customer: number,
+    situation: string
     customer?: CustomerDTO,
     products?: ProductDTO[]
     total: number,
@@ -28,4 +30,4 @@ interface ProductIDs {
 }
 
 
-export {PurchaseDTO, CompletePurchaseDTO, ProductIDs, PurchaseCreateDTO}
+export { PurchaseDTO, CompletePurchaseDTO, ProductIDs, PurchaseCreateDTO }

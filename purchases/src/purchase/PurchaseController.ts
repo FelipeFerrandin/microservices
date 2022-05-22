@@ -1,8 +1,8 @@
-import {IPurchaseAPI} from "@/purchase/IPurchaseAPI";
-import {Request, Response} from "express";
-import {DefaultErrorResponseDTO} from "@/framework/errors/DefaultErrorResponseDTO";
-import {defaultResponse} from "@/framework/utilities/responses/DefaultResponse";
-import {runInTransaction} from "@/framework/providers/database/TransactionManager";
+import { IPurchaseAPI } from "@/purchase/IPurchaseAPI"
+import { Request, Response } from "express"
+import { DefaultErrorResponseDTO } from "@/framework/errors/DefaultErrorResponseDTO"
+import { defaultResponse } from "@/framework/utilities/responses/DefaultResponse"
+import { runInTransaction } from "@/framework/providers/database/TransactionManager"
 
 class PurchaseController {
 
@@ -89,6 +89,21 @@ class PurchaseController {
         }
     }
 
+    async finalizePurchase(aRequest: Request, aResponse: Response) {
+        try {
+            const aIDPurchase = Number(aRequest.params.idPurchase)
+            await this.mIPurchaseAPI.finalizePurchase(aIDPurchase)
+            aResponse.status(200).json(defaultResponse("Compra finalizada com sucesso!"))
+        } catch (e) {
+            console.error(e)
+            aResponse.status(422).json(<DefaultErrorResponseDTO>{
+                error: e,
+                message: "Erro ao finalizar compra!",
+                code: 422
+            })
+        }
+    }
+
 }
 
-export {PurchaseController}
+export { PurchaseController }

@@ -1,5 +1,5 @@
-import {Router} from "express";
-import {gPurchaseController} from "@/purchase/PurchaseModule";
+import { Router } from "express"
+import { gPurchaseController } from "@/purchase/PurchaseModule"
 
 const PurchaseRouter = Router()
 
@@ -23,4 +23,4 @@ PurchaseRouter.delete("/:idPurchase/:idPurchaseDetail", (req, res) => {
     return gPurchaseController.deleteProductPurchaseById(req, res)
 })
 
-export {PurchaseRouter}
+export { PurchaseRouter }
