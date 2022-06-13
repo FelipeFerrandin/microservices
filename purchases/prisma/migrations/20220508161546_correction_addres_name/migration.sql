@@ -10,9 +10,11 @@ ALTER TABLE `customer` DROP FOREIGN KEY `customer_address_id_fkey`;
 
 -- AlterTable
 ALTER TABLE `addres` DROP PRIMARY KEY,
-    DROP COLUMN `id_addres`,
+DROP
+COLUMN `id_addres`,
     ADD COLUMN `id_address` INTEGER NOT NULL AUTO_INCREMENT,
     ADD PRIMARY KEY (`id_address`);
 
 -- AddForeignKey
-ALTER TABLE `customer` ADD CONSTRAINT `customer_address_id_fkey` FOREIGN KEY (`address_id`) REFERENCES `addres`(`id_address`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `customer`
+    ADD CONSTRAINT `customer_address_id_fkey` FOREIGN KEY (`address_id`) REFERENCES `addres` (`id_address`) ON DELETE RESTRICT ON UPDATE CASCADE;

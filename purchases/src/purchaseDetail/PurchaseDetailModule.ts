@@ -1,5 +1,5 @@
-import {PurchaseDetailRepository} from "./PurchaseDetailRepository";
-import {PurchaseDetailAPI} from "./PurchaseDetailAPI";
+import {PurchaseDetailRepository} from "./PurchaseDetailRepository"
+import {PurchaseDetailAPI} from "./PurchaseDetailAPI"
 
 
 const lRepository = PurchaseDetailRepository.create()

@@ -1,4 +1,4 @@
-import {PurchaseDetailEntity} from "@/purchaseDetail/PurchaseDetailEntity";
+import {PurchaseDetailEntity} from "@/purchaseDetail/PurchaseDetailEntity"
 
 interface ProductEntity {
     id_product: number

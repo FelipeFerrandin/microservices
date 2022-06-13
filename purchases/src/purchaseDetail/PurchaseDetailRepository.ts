@@ -1,4 +1,4 @@
-import {DataBaseClient} from "@/framework/providers/database/PrismaClient"
+import {DataBaseClient} from "@/framework/providers/database/prisma/PrismaClient"
 import {ProductDTO} from "@/product/ProductDTO"
 import {IPurchaseDetailRepository} from "./IPurchaseDetailRepository"
 

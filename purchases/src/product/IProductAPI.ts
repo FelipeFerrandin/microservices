@@ -1,5 +1,5 @@
-import {ProductDTO} from "@/product/ProductDTO";
-import {ProductIDs} from "@/purchase/PurchaseDTO";
+import {ProductDTO} from "@/product/ProductDTO"
+import {ProductIDs} from "@/purchase/PurchaseDTO"
 
 interface IProductAPI {
     createProduct(aProductDTO: ProductDTO): Promise<void>

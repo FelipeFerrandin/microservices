@@ -1,4 +1,4 @@
-import {DataBaseClient} from "@/framework/providers/database/PrismaClient";
+import {DataBaseClient} from "@/framework/providers/database/prisma/PrismaClient"
 
 const runInTransaction = async (aFunction: () => Promise<void>) => {
     const lDatabase = await DataBaseClient.create().getDatabaseInstance()

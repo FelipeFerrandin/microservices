@@ -1,9 +1,9 @@
-import {IProductAPI} from "@/product/IProductAPI";
-import {ProductDTO} from "@/product/ProductDTO";
-import {IProductRepository} from "@/product/IProductRepository";
-import BusinessError from "@/framework/errors/BusinessError";
-import ProductBO from "@/product/ProductBO";
-import {ProductIDs} from "@/purchase/PurchaseDTO";
+import {IProductAPI} from "@/product/IProductAPI"
+import {ProductDTO} from "@/product/ProductDTO"
+import {IProductRepository} from "@/product/IProductRepository"
+import BusinessError from "@/framework/errors/BusinessError"
+import ProductBO from "@/product/ProductBO"
+import {ProductIDs} from "@/purchase/PurchaseDTO"
 
 class ProductAPI implements IProductAPI {
 

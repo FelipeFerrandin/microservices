@@ -1,4 +1,4 @@
-import {ProductDTO} from "@/product/ProductDTO";
+import {ProductDTO} from "@/product/ProductDTO"
 
 interface IPurchaseDetailAPI {
     insertProductInPurchase(aIDPurchase: number, aIdProduct: number): Promise<void>

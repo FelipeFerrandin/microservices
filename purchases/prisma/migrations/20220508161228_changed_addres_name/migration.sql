@@ -13,4 +13,5 @@ ALTER TABLE `customer` DROP COLUMN `adress_id`,
     ADD COLUMN `address_id` INTEGER NOT NULL;
 
 -- AddForeignKey
-ALTER TABLE `customer` ADD CONSTRAINT `customer_address_id_fkey` FOREIGN KEY (`address_id`) REFERENCES `addres`(`id_addres`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `customer`
+    ADD CONSTRAINT `customer_address_id_fkey` FOREIGN KEY (`address_id`) REFERENCES `addres` (`id_addres`) ON DELETE RESTRICT ON UPDATE CASCADE;

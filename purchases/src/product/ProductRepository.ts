@@ -1,15 +1,15 @@
-import {IProductRepository} from "@/product/IProductRepository";
-import {ProductDTO} from "@/product/ProductDTO";
-import {DataBaseClient} from "@/framework/providers/database/PrismaClient";
-import {ProductIDs} from "@/purchase/PurchaseDTO";
+import {IProductRepository} from "@/product/IProductRepository"
+import {ProductDTO} from "@/product/ProductDTO"
+import {DataBaseClient} from "@/framework/providers/database/prisma/PrismaClient"
+import {ProductIDs} from "@/purchase/PurchaseDTO"
 
 class ProductRepository implements IProductRepository {
 
-    private static mInstance: ProductRepository;
+    private static mInstance: ProductRepository
     private mDataBase
 
     public static create() {
-        return this.mInstance || (this.mInstance = new this());
+        return this.mInstance || (this.mInstance = new this())
     }
 
     constructor() {

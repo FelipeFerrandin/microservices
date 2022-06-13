@@ -8,9 +8,11 @@
 
 */
 -- AlterTable
-ALTER TABLE `purchase` ADD COLUMN `subtotal` DECIMAL(65, 30) NOT NULL,
+ALTER TABLE `purchase`
+    ADD COLUMN `subtotal` DECIMAL(65, 30) NOT NULL,
     ADD COLUMN `total` DECIMAL(65, 30) NOT NULL;
 
 -- AlterTable
 ALTER TABLE `purchase_detail` DROP COLUMN `subtotal`,
-    DROP COLUMN `total`;
+DROP
+COLUMN `total`;

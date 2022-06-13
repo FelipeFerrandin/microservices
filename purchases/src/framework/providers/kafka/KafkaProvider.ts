@@ -1,4 +1,4 @@
-import {Kafka} from "kafkajs";
+import {Kafka} from "kafkajs"
 
 if (!process.env.KAFKA_BROKER) {
     throw new Error('Kafka broker address not set!')

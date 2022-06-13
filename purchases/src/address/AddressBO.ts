@@ -1,5 +1,5 @@
-import {AddressDTO} from "@/address/AddressDTO";
-import BusinessError from "@/framework/errors/BusinessError";
+import {AddressDTO} from "@/address/AddressDTO"
+import BusinessError from "@/framework/errors/BusinessError"
 
 export default class AddressBO {
 

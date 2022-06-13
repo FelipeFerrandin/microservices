@@ -1,7 +1,7 @@
-import {IPurchaseDetailAPI} from "@/purchaseDetail/IPurchaseDetailAPI";
-import {ProductDTO} from "@/product/ProductDTO";
-import {IPurchaseDetailRepository} from "@/purchaseDetail/IPurchaseDetailRepository";
-import BusinessError from "@/framework/errors/BusinessError";
+import {IPurchaseDetailAPI} from "@/purchaseDetail/IPurchaseDetailAPI"
+import {ProductDTO} from "@/product/ProductDTO"
+import {IPurchaseDetailRepository} from "@/purchaseDetail/IPurchaseDetailRepository"
+import BusinessError from "@/framework/errors/BusinessError"
 
 class PurchaseDetailAPI implements IPurchaseDetailAPI {
 

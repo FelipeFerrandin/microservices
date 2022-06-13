@@ -1,6 +1,6 @@
-import {CustomerRepository} from "@/customer/CustomerRepository";
-import {CustomerAPI} from "@/customer/CustomerAPI";
-import {CustomerController} from "@/customer/CustomerController";
+import {CustomerRepository} from "@/customer/CustomerRepository"
+import {CustomerAPI} from "@/customer/CustomerAPI"
+import {CustomerController} from "@/customer/CustomerController"
 
 
 const lCustomerRepository = CustomerRepository.create()

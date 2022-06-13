@@ -1,5 +1,5 @@
-import {Router} from "express";
-import {gProductController} from "@/product/ProductModule";
+import {Router} from "express"
+import {gProductController} from "@/product/ProductModule"
 
 const ProductRouter = Router()
 

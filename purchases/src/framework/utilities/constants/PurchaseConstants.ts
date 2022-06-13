@@ -4,6 +4,6 @@ enum PurchaseConstants {
     COMPRA_CANCELADA = "COMPRA_CANCELADA"
 }
 
-export { PurchaseConstants }
+export {PurchaseConstants}
 
 

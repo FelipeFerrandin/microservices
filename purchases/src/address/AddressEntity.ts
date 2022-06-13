@@ -1,4 +1,4 @@
-import {CustomerEntity} from "@/customer/CustomerEntity";
+import {CustomerEntity} from "@/customer/CustomerEntity"
 
 interface AddressEntity {
     id_address: number

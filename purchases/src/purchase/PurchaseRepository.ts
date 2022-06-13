@@ -1,9 +1,9 @@
-import { IPurchaseRepository } from "@/purchase/IPurchaseRepository"
-import { CompletePurchaseDTO, PurchaseDTO } from "@/purchase/PurchaseDTO"
-import { ProductDTO } from "@/product/ProductDTO"
-import { Decimal } from "@prisma/client/runtime"
-import { DataBaseClient } from "@/framework/providers/database/PrismaClient"
-import { PurchaseConstants } from "@/framework/utilities/constants/PurchaseConstants"
+import {IPurchaseRepository} from "@/purchase/IPurchaseRepository"
+import {CompletePurchaseDTO, PurchaseDTO} from "@/purchase/PurchaseDTO"
+import {ProductDTO} from "@/product/ProductDTO"
+import {Decimal} from "@prisma/client/runtime"
+import {DataBaseClient} from "@/framework/providers/database/prisma/PrismaClient"
+import {PurchaseConstants} from "@/framework/utilities/constants/PurchaseConstants"
 
 
 class PurchaseRepository implements IPurchaseRepository {
@@ -55,7 +55,7 @@ class PurchaseRepository implements IPurchaseRepository {
         const lPurchase = await this.mDataBase.purchase.findFirst({
             where: {
                 id_purchase: aIdPurchase, AND: [
-                    { situation: { not: PurchaseConstants.COMPRA_CANCELADA } }
+                    {situation: {not: PurchaseConstants.COMPRA_CANCELADA}}
                 ]
             }
         })
@@ -85,12 +85,12 @@ class PurchaseRepository implements IPurchaseRepository {
 
     async finalizePurchase(aIdPurchase: number) {
         await this.mDataBase.purchase.update({
-            data: { situation: PurchaseConstants.COMPRA_FINALIZADA },
-            where: { id_purchase: aIdPurchase }
+            data: {situation: PurchaseConstants.COMPRA_FINALIZADA},
+            where: {id_purchase: aIdPurchase}
         })
     }
 
     //TODO CANCELAR COMPRA
 }
 
-export { PurchaseRepository }
+export {PurchaseRepository}

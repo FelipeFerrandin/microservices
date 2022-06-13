@@ -1,5 +1,5 @@
-import {ProductDTO} from "@/product/ProductDTO";
-import BusinessError from "@/framework/errors/BusinessError";
+import {ProductDTO} from "@/product/ProductDTO"
+import BusinessError from "@/framework/errors/BusinessError"
 
 export default class ProductBO {
     static validate({name, price}: ProductDTO) {

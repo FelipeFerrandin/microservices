@@ -6,4 +6,4 @@ interface OrderDTO {
     customer_name: string
 }
 
-export { OrderDTO }
+export {OrderDTO}

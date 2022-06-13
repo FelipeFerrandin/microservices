@@ -1,5 +1,5 @@
-import { CustomerEntity } from "@/customer/CustomerEntity"
-import { PurchaseDetailEntity } from "@/purchaseDetail/PurchaseDetailEntity"
+import {CustomerEntity} from "@/customer/CustomerEntity"
+import {PurchaseDetailEntity} from "@/purchaseDetail/PurchaseDetailEntity"
 
 interface PurchaseEntity {
     id_purchase: number
@@ -12,4 +12,4 @@ interface PurchaseEntity {
     purchase_detail: PurchaseDetailEntity[]
 }
 
-export { PurchaseEntity }
+export {PurchaseEntity}

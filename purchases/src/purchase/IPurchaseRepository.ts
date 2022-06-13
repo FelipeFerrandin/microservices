@@ -1,5 +1,5 @@
-import { CompletePurchaseDTO, PurchaseDTO } from "@/purchase/PurchaseDTO"
-import { ProductDTO } from "@/product/ProductDTO"
+import {CompletePurchaseDTO, PurchaseDTO} from "@/purchase/PurchaseDTO"
+import {ProductDTO} from "@/product/ProductDTO"
 
 interface IPurchaseRepository {
     createPurchase(aPurchaseDTO: PurchaseDTO, aProductsDTO: ProductDTO[]): Promise<PurchaseDTO>
@@ -13,4 +13,4 @@ interface IPurchaseRepository {
     finalizePurchase(aIdPurchase: number): Promise<void>
 }
 
-export { IPurchaseRepository }
+export {IPurchaseRepository}

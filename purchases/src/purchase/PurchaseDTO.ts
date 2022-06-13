@@ -1,5 +1,5 @@
-import { CustomerDTO } from "@/customer/CustomerDTO"
-import { ProductDTO } from "@/product/ProductDTO"
+import {CustomerDTO} from "@/customer/CustomerDTO"
+import {ProductDTO} from "@/product/ProductDTO"
 
 interface PurchaseDTO {
     id_purchase: number
@@ -30,4 +30,4 @@ interface ProductIDs {
 }
 
 
-export { PurchaseDTO, CompletePurchaseDTO, ProductIDs, PurchaseCreateDTO }
+export {PurchaseDTO, CompletePurchaseDTO, ProductIDs, PurchaseCreateDTO}
