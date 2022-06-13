@@ -1,4 +1,4 @@
-import { CompletePurchaseDTO, ProductIDs, PurchaseCreateDTO } from "@/purchase/PurchaseDTO"
+import {CompletePurchaseDTO, ProductIDs, PurchaseCreateDTO} from "@/purchase/PurchaseDTO"
 
 interface IPurchaseAPI {
     createPurchase(aPurchaseCreateDTO: PurchaseCreateDTO): Promise<void>
@@ -9,9 +9,9 @@ interface IPurchaseAPI {
 
     deleteProductPurchaseById(aIDPurchase: number, aIDPurchaseDetail: number): Promise<void>
 
-    deletePurchaseById(aIdPurchase: number): Promise<void>
+    cancelPurchaseById(aIdPurchase: number): Promise<void>
 
     finalizePurchase(aIdPurchase: number): Promise<void>
 }
 
-export { IPurchaseAPI }
+export {IPurchaseAPI}
