@@ -1,4 +1,4 @@
-import {TopicsConstants} from "@/framework/providers/kafka/TopicsConstants";
+import {TopicsConstants} from "@/framework/providers/kafka/TopicsConstants"
 
 interface IKafkaProducerMessage {
     sendMessage<T>(topic: TopicsConstants, message: T): Promise<void>
