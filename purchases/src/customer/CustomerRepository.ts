@@ -1,14 +1,14 @@
-import {ICustomerRepository} from "@/customer/ICustomerRepository";
-import {CustomerDTO} from "@/customer/CustomerDTO";
-import {DataBaseClient} from "@/framework/providers/database/PrismaClient";
+import {ICustomerRepository} from "@/customer/ICustomerRepository"
+import {CustomerDTO} from "@/customer/CustomerDTO"
+import {DataBaseClient} from "@/framework/providers/database/prisma/PrismaClient"
 
 class CustomerRepository implements ICustomerRepository {
 
-    private static mInstance: CustomerRepository;
+    private static mInstance: CustomerRepository
     private mDataBase
 
     public static create() {
-        return this.mInstance || (this.mInstance = new this());
+        return this.mInstance || (this.mInstance = new this())
     }
 
     constructor() {
@@ -20,6 +20,7 @@ class CustomerRepository implements ICustomerRepository {
             data: {
                 email: aCustomer.email,
                 name: aCustomer.name,
+                password: aCustomer.password ?? "",
                 address: {
                     create: {
                         number: aCustomer.number,
@@ -58,6 +59,36 @@ class CustomerRepository implements ICustomerRepository {
             zip_code: lCustomerDTO?.address.zip_code ?? "",
             city: lCustomerDTO?.address.city ?? "",
             state: lCustomerDTO?.address.state ?? ""
+        }
+    }
+
+
+    async getCompleteCustomerWithPassword(aEmailCustomer: string): Promise<CustomerDTO> {
+        const lCustomerDTO = await this.mDataBase.customer.findFirst({
+            select: {
+                id_customer: true,
+                email: true,
+                name: true,
+                address: true,
+                password: true
+            },
+            where: {
+                email: aEmailCustomer
+            }
+        })
+
+        return {
+            id_customer: lCustomerDTO?.id_customer ?? 0,
+            name: lCustomerDTO?.name ?? "",
+            email: lCustomerDTO?.email ?? "",
+            address_id: lCustomerDTO?.address.id_address ?? 0,
+            street: lCustomerDTO?.address.street ?? "",
+            number: lCustomerDTO?.address.number ?? 0,
+            district: lCustomerDTO?.address.district ?? "",
+            zip_code: lCustomerDTO?.address.zip_code ?? "",
+            city: lCustomerDTO?.address.city ?? "",
+            state: lCustomerDTO?.address.state ?? "",
+            password: lCustomerDTO?.password ?? ""
         }
     }
 

@@ -2,6 +2,7 @@ interface CustomerDTO {
     id_customer?: number
     name: string
     email: string
+    password?: string
     address_id?: number
     street: string
     number: number
